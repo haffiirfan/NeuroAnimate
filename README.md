@@ -9,5 +9,5 @@
 | **Lip-Opening Amplifier** | Delta-based lip-region amplification for natural, expressive speech |
 | **Body Animation** | Procedural breathing, shoulder sway & speech micro-motions (CPU, parallel) |
 | **Face–Body Compositor** | Seamless alpha-blended merge at the neck line |
-| **Real-ESRGAN Upscaler** | Dual-GPU 1.5× super-resolution for a crisp final output |
+| **Real-ESRGAN Upscaler** | Dual-GPU parallel 1.5× super-resolution — splits frame batches across both GPUs, reducing upscaling time by ~50% |
 

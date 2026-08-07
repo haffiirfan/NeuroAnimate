@@ -11,7 +11,7 @@ Deploying complex, multi-model AI pipelines usually requires high-end, server-gr
 By utilizing strict VRAM reclamation and heterogeneous CPU-GPU scheduling, the pipeline achieves a 1.88× memory scaling factor, maintaining peak single-GPU occupancy at just 13.8 GB.
 
 ### Pipeline Stages
-1. **Prompt Enhancement:** Mistral-7B-Instruct
+1. **Prompt Enhancement:** Mistral-7B-Instruct (fine tuned by Nous-Hermes)
 2. **Base Portrait Generation:** SDXL Base + Refiner
 3. **Facial Animation:** LivePortrait & InsightFace
 4. **Body Motion Synthesis:** Custom retargeting

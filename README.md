@@ -1,4 +1,4 @@
-# NeuroAnimate: Multimodal Synthesis for 3D-styled imagery & hyper-realistic Shorts
+# Neuro_Animate: Multimodal Synthesis for 3D-styled imagery & hyper-realistic Shorts
 
 This repository contains the official implementation of **NeuroAnimate**, a memory-orchestrated pipeline that transforms textual prompts into fully animated portrait videos.
 

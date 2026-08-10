@@ -1,6 +1,6 @@
 # Neuro Animate: Multimodal Synthesis for 3D-styled imagery & hyper-realistic Shorts
 
-This repository contains the official implementation of **NeuroAnimate**, a memory-orchestrated pipeline that transforms textual prompts into fully animated portrait videos.
+This repository contains the official implementation of **Neuro Animate**, a memory-orchestrated pipeline that transforms textual prompts into fully animated portrait videos.
 
 Due to the heavy hardware requirements of running 60.1 GB of heterogeneous models, the codebase is provided as a Kaggle Notebook (`.ipynb`), which is configured to run on a dual-T4 GPU environment (32 GB total VRAM).
 

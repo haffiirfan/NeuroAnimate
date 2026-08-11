@@ -34,3 +34,11 @@ This work is the subject of a first-author manuscript currently **under peer rev
 > **Springer Nature — Multimedia Systems** (Impact Factor: 3.9)
 >
 > *Title and details available upon request.*
+>
+> ## Context
+Neuro Animate was developed as a Final Year Project — engineered end-to-end from memory profiling and orchestration design through multi-model pipeline integration, animation synthesis, and a reproducible single-notebook deployment — to demonstrate that production-scale generative AI is not gated by hardware budget, but by how intelligently you manage the hardware you have.
+---
+## License
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+---
+*Built to prove that 60 GB of AI doesn't need 60 GB of GPU.*

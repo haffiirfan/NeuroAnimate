@@ -17,9 +17,20 @@ Built to answer the question most multi-model demos ignore: *what happens when y
 | **Super-resolution** | Real-ESRGAN upscales the final animated frames, recovering fine texture detail lost during the animation warping process |
 | **Memory orchestration** | Dynamic Memory Orchestration (DMO) schedules all six models within a 32 GB dual-T4 envelope, achieving a **1.88× memory scaling factor** with peak single-GPU occupancy of just **13.8 GB** |
 ---
-## System Architecture
+---
+## Getting Started
+The entire pipeline is self-contained in a single Kaggle notebook — no local installation, no dependency hell, no paid GPU instances.
+```bash
+# 1. Create a free Kaggle account at https://www.kaggle.com/
+# 2. Upload NeuroAnimate.ipynb as a new Notebook
+# 3. In the right-hand panel, set Accelerator → GPU T4 x2
+# 4. Run all cells sequentially
 ```
-                    ┌───────────────────────────────────────────────┐
-                    │         Dynamic Memory Orchestrator           │
-                    │     (Sequential Load → Execute → Evict)       │
-                    └───────────────────┬───────────────────────────┘
+The notebook will automatically download all required model weights (~60.1 GB) from HuggingFace directly into the Kaggle runtime. No manual weight management needed.
+> **⚠️ Hardware Note:** This pipeline is engineered specifically for the dual-T4 Kaggle environment. Running on a single GPU or on hardware with less than 32 GB total VRAM will fail. The DMO scheduler's phase gating and memory reclamation are tuned for this exact configuration.
+---
+## Publication
+This work is the subject of a first-author manuscript currently **under peer review** at:
+> **Springer Nature — Multimedia Systems** (Impact Factor: 3.9)
+>
+> *Title and details available upon request.*

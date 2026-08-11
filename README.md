@@ -1,30 +1,25 @@
-# Neuro Animate: Multimodal Synthesis for 3D-styled imagery & hyper-realistic Shorts
-
-This repository contains the official implementation of **Neuro Animate**, a memory-orchestrated pipeline that transforms textual prompts into fully animated portrait videos.
-
-Due to the heavy hardware requirements of running 60.1 GB of heterogeneous models, the codebase is provided as a Kaggle Notebook (`.ipynb`), which is configured to run on a dual-T4 GPU environment (32 GB total VRAM).
-
+# Neuro Animate
+### Memory-Orchestrated Multimodal Synthesis for 3D-Styled Imagery & Hyper-Realistic Portrait Animation
+*Six heterogeneous AI models. 60.1 GB of weights. 32 GB of VRAM. Zero compromise.*
+---
 ## Overview
-
-Deploying complex, multi-model AI pipelines usually requires high-end, server-grade GPUs. OrchestraGen solves this by implementing **Dynamic Memory Orchestration (DMO)**, a scheduling discipline that allows multiple heavy models to execute sequentially within a memory-constrained address space. 
-
-By utilizing strict VRAM reclamation and heterogeneous CPU-GPU scheduling, the pipeline achieves a 1.88× memory scaling factor, maintaining peak single-GPU occupancy at just 13.8 GB.
-
-### Pipeline Stages
-1. **Prompt Enhancement:** Mistral-7B-Instruct (fine tuned by Nous-Hermes)
-2. **Base Portrait Generation:** SDXL Base + Refiner
-3. **Facial Animation:** LivePortrait & InsightFace
-4. **Body Motion Synthesis:** Custom retargeting using Haar-cascade landmark estimation
-5. **Super-Resolution:** Real-ESRGAN
-
-## Quick Start
-
-The entire pipeline is self-contained in a single Kaggle notebook. 
-
-1. Create a [Kaggle](https://www.kaggle.com/) account if you don't have one.
-2. Upload `NeuroAnimate.ipynb` as a new Notebook in Kaggle.
-3. In the right-hand panel, set the **Accelerator** to **GPU T4 x2**.
-4. Run the cells sequentially. The notebook will automatically download the required model weights (approx. 60.1 GB) from HuggingFace directly into the Kaggle environment.
-
-*Note: Do not run this on a local machine unless you have a T4x2 GPU environment variables for dual-GPU execution in Kaggle.*
-
+Neuro Animate is an end-to-end generative pipeline that transforms a single text prompt into a fully animated, super-resolved portrait video — fusing large language model prompt engineering, diffusion-based image synthesis, landmark-driven facial animation, body motion retargeting, and neural super-resolution into one unified, memory-aware execution graph.
+The core engineering contribution isn't the pipeline itself — it's **how it runs.** Deploying 60.1 GB of heterogeneous model weights on hardware that only has 32 GB of VRAM should be impossible. Neuro Animate solves this through **Dynamic Memory Orchestration (DMO)**, a scheduling discipline that treats GPU memory as a managed address space — loading, executing, and evicting models in strict sequential phases with full VRAM reclamation between stages.
+Built to answer the question most multi-model demos ignore: *what happens when your pipeline exceeds your hardware?*
+---
+## Capability
+| | What it does |
+|:---|:---|
+| **Prompt intelligence** | Raw user prompts are expanded and semantically enriched by Mistral-7B-Instruct (Nous-Hermes fine-tune) into detailed, diffusion-optimized scene descriptions — bridging the gap between human intent and model-ready conditioning |
+| **Portrait synthesis** | SDXL Base generates a high-fidelity 1024×1024 base portrait from the enriched prompt; SDXL Refiner applies a second-pass denoising sweep for fine detail and texture coherence |
+| **Facial animation** | InsightFace extracts 2D/3D facial landmarks from the generated portrait; LivePortrait re-targets expression, gaze, and head pose from a driving video onto the static face — producing temporally coherent facial motion |
+| **Body motion synthesis** | Custom retargeting module uses Haar-cascade landmark estimation to synthesize upper-body motion, adding natural movement beyond facial expressions alone |
+| **Super-resolution** | Real-ESRGAN upscales the final animated frames, recovering fine texture detail lost during the animation warping process |
+| **Memory orchestration** | Dynamic Memory Orchestration (DMO) schedules all six models within a 32 GB dual-T4 envelope, achieving a **1.88× memory scaling factor** with peak single-GPU occupancy of just **13.8 GB** |
+---
+## System Architecture
+```
+                    ┌───────────────────────────────────────────────┐
+                    │         Dynamic Memory Orchestrator           │
+                    │     (Sequential Load → Execute → Evict)       │
+                    └───────────────────┬───────────────────────────┘

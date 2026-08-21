@@ -12,7 +12,7 @@ Built to answer the question most multi-model demos ignore: *what happens when y
 |:---|:---|
 | **Prompt intelligence** | Raw user prompts are expanded and semantically enriched by Mistral-7B-Instruct (Nous-Hermes fine-tune) into detailed, diffusion-optimized scene descriptions — bridging the gap between human intent and model-ready conditioning |
 | **Portrait synthesis** | SDXL Base generates a high-fidelity 1024×1024 base portrait from the enriched prompt; SDXL Refiner applies a second-pass denoising sweep for fine detail and texture coherence |
-| **Facial animation** | InsightFace extracts 2D/3D facial landmarks from the generated portrait; LivePortrait re-targets expression, gaze, and head pose from a driving video onto the static face — producing temporally coherent facial motion |
+| **Facial animation** | InsightFace extracts 2D/3D facial landmarks from the generated portrait; LivePortrait re-targets expression, gaze, and head pose from a driving video onto the static face, producing temporally coherent facial motion |
 | **Body motion synthesis** | Custom retargeting module uses Haar-cascade landmark estimation to synthesize upper-body motion, adding natural movement beyond facial expressions alone |
 | **Super-resolution** | Real-ESRGAN upscales the final animated frames, recovering fine texture detail lost during the animation warping process |
 | **Memory orchestration** | Dynamic Memory Orchestration (DMO) schedules all six models within a 32 GB dual-T4 envelope, achieving a **1.88× memory scaling factor** with peak single-GPU occupancy of just **13.8 GB** |

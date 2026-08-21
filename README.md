@@ -1,6 +1,6 @@
 # Neuro Animate
 ### Memory-Orchestrated Multimodal Synthesis for 3D-Styled Imagery & Hyper-Realistic Portrait Animation
-*Six heterogeneous AI models. 60.1 GB of weights. 32 GB of VRAM. Zero compromise.*
+*Six heterogeneous AI models. 60.1 GB of weights. 32 GB of VRAM. *
 ---
 ## Overview
 Neuro Animate is an end-to-end generative pipeline that transforms a single text prompt into a fully animated, super-resolved portrait video, fusing large language model prompt engineering, diffusion-based image synthesis, landmark-driven facial animation, body motion retargeting, and neural super-resolution into one unified, memory-aware execution graph.

@@ -31,7 +31,7 @@ The notebook will automatically download all required model weights (~60.1 GB) f
 ---
 ## Publication
 This work is the subject of a first-author manuscript currently **under peer review** at:
-> **Springer Nature—Multimedia Systems** (Impact Factor: 3.9)
+> **Springer Nature | Multimedia Systems** (Impact Factor: 3.9)
 >
 > *Title and details available upon request.*
 >

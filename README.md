@@ -1,4 +1,4 @@
-# 🧠 NeuroAnimate — OrchestraGen Pipeline
+#  NeuroAnimate | OrchestraGen Pipeline
 
 ### Memory-Orchestrated Multimodal Synthesis for 3D-Styled Imagery & Hyper-Realistic Portrait Animation
 

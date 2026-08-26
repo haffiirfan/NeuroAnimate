@@ -206,7 +206,7 @@ This project is licensed under the MIT License — see [LICENSE](LICENSE) for de
 
 ---
 
-## 🙏 Acknowledgements
+##  Acknowledgements
 
 - [KwaiVGI/LivePortrait](https://github.com/KwaiVGI/LivePortrait) — Face animation
 - [Stability AI](https://stability.ai/) — Stable Diffusion XL

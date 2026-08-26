@@ -176,14 +176,14 @@ print(status)
 
 | Stage | Time | Hardware |
 |:--|:--:|:--|
-| Prompt Enhancement (Mistral 7B) | ~15s | GPU 1 |
-| Image Generation (SDXL Base) | ~25s | GPU 0 |
-| Image Refinement (SDXL Refiner) | ~30s | GPU 1 |
-| Face Animation (LivePortrait) | ~45s | GPU 0 |
-| Body Animation (2D Procedural) | ~30s | CPU (parallel) |
+| Prompt Enhancement (Mistral 7B) | ~69s | GPU 1 |
+| Image Generation (SDXL Base) | ~19s | GPU 0 |
+| Image Refinement (SDXL Refiner) | ~17s | GPU 1 |
+| Face Animation (LivePortrait) | ~156s | GPU 0 |
+| Body Animation (2D Procedural) | ~0s | CPU (parallel) |
 | Compositing | ~10s | CPU |
-| Super-Resolution (ESRGAN) | ~60s | GPU 0 + GPU 1 |
-| **Total Pipeline** | **~3.5 min** | |
+| Super-Resolution (ESRGAN) | ~140s | GPU 0 + GPU 1 |
+| **Total Pipeline** | **~6.7 min** | |
 
 ---
 

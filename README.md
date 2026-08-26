@@ -162,12 +162,12 @@ print(status)
 
 | # | Model | Parameters | VRAM (FP16) | Purpose |
 |:--:|:--|:--:|:--:|:--|
-| 1 | [Nous-Hermes-2-Mistral-7B-DPO](https://huggingface.co/NousResearch/Nous-Hermes-2-Mistral-7B-DPO) | 7.2B | 14.5 GB | Prompt enhancement |
-| 2 | [SDXL 1.0 Base](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) | 3.5B | 6.9 GB | Text-to-image generation |
-| 3 | [SDXL 1.0 Refiner](https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0) | 3.1B | 6.2 GB | Detail enhancement |
-| 4 | [LivePortrait](https://github.com/KwaiVGI/LivePortrait) | — | 3.0 GB | Facial motion transfer |
+| 1 | [Nous-Hermes-2-Mistral-7B-DPO](https://huggingface.co/NousResearch/Nous-Hermes-2-Mistral-7B-DPO) | 7.2B | 13.8 GB | Prompt enhancement |
+| 2 | [SDXL 1.0 Base](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) | 3.5B | 10.2 GB | Text-to-image generation |
+| 3 | [SDXL 1.0 Refiner](https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0) | 3.1B | 9.5 GB | Detail enhancement |
+| 4 | [LivePortrait](https://github.com/KwaiVGI/LivePortrait) | — | 2.1 GB | Facial motion transfer |
 | 5 | InsightFace | — | 0.5 GB | Face detection & alignment |
-| 6 | [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) | 16.7M | 0.1 GB | 1.5× super-resolution |
+| 6 | [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) | 16.7M | 12.3 x 2 GB | 1.5× super-resolution |
 | | **Total** | | **~60.1 GB** | **(but only 14.5 GB peak with DMO)** |
 
 ---

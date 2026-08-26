@@ -1,0 +1,55 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# NeuroAnimate — OrchestraGen Pipeline Dependencies
+# Environment: Kaggle (Python 3.10, CUDA 12.1, 2× NVIDIA Tesla T4 16 GB)
+#
+# IMPORTANT: NumPy and protobuf are pinned to specific versions to resolve
+# conflicts between TensorFlow (auto-loaded in Kaggle), ONNX Runtime,
+# InsightFace, and the Transformers/Diffusers stack.
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ── Core ML Stack (Prompt Enhancement + Image Generation) ────────────────────
+numpy==1.26.4
+peft==0.17.0
+diffusers==0.30.0
+transformers==4.44.2
+accelerate==0.34.2
+safetensors
+
+# ── Vision / Animation Stack ─────────────────────────────────────────────────
+opencv-python==4.9.0.80
+opencv-contrib-python==4.9.0.80
+onnxruntime-gpu==1.18.0
+onnx==1.16.1
+insightface
+mediapipe==0.10.9
+
+# ── Video Processing ─────────────────────────────────────────────────────────
+imageio==2.33.0
+imageio-ffmpeg==0.4.9
+ffmpeg-python==0.2.0
+
+# ── Scientific Computing ─────────────────────────────────────────────────────
+scipy==1.13.1
+scikit-image==0.22.0
+scikit-learn==1.4.2
+pykalman==0.9.7
+
+# ── Configuration & Utilities ────────────────────────────────────────────────
+tyro==0.8.5
+lmdb==1.4.1
+albumentations==1.4.10
+einops==0.7.0
+omegaconf==2.3.0
+pyyaml
+yacs
+tqdm
+rich
+pillow>=10.2.0
+
+# ── UI & Model Hub ───────────────────────────────────────────────────────────
+gradio>=4.20.0
+huggingface_hub
+
+# ── Compatibility Pins ───────────────────────────────────────────────────────
+# protobuf must be < 4.0 for TensorFlow + InsightFace + ONNX compatibility
+protobuf==3.20.3

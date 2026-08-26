@@ -14,7 +14,7 @@
 
 ##  Overview
 
-**NeuroAnimate** is a six-model generative AI pipeline that transforms a simple text prompt into a fully animated, hyper-realistic portrait video. The core contribution is **OrchestraGen** — a **Dynamic Memory Orchestration (DMO)** strategy that enables models totalling **~60.1 GB** in weights to run sequentially within **32 GB** of combined VRAM on consumer-grade hardware (2× NVIDIA Tesla T4), without quantisation or quality loss.
+**NeuroAnimate** is a six-model generative AI pipeline that transforms a simple text prompt into a fully animated, hyper-realistic portrait video. The core contribution is **OrchestraGen**  a **Dynamic Memory Orchestration (DMO)** strategy that enables models totalling **~60.1 GB** in weights to run sequentially within **32 GB** of combined VRAM on consumer-grade hardware (2× NVIDIA Tesla T4), without quantisation or quality loss.
 
 ### The Pipeline
 
@@ -30,7 +30,7 @@ Text Prompt
            ▼
 ┌──────────────────────┐
 │  2. SDXL 1.0 Base    │  GPU 0  │  Text-to-Image (768×768)
-│     (10.1 GB FP16)    │         │
+│     (10.1 GB FP16)   │         │
 └──────────┬───────────┘
            │ ── VRAM CLEAR ──
            ▼
@@ -48,7 +48,7 @@ Text Prompt
            │ ── VRAM CLEAR ──     │
            ▼                      ▼
 ┌─────────────────────────────────────────────┐
-│  5. Shoulder-Split Compositor (CPU)          │
+│  5. Shoulder-Split Compositor (CPU)         │
 │     Feathered blend + colour correction     │
 └──────────────────┬──────────────────────────┘
                    │
@@ -191,7 +191,7 @@ print(status)
 
 **OrchestraGen: Memory-Orchestrated Multimodal Synthesis for 3D-Styled Imagery and Hyper-Realistic Portrait Animation**
 
-- **Author:** Haffi Irfan
+- **Author:** Haffi Irfan | Dr. Muhammad Saleem
 - **Journal:** Multimedia Systems (MMSJ), Springer Nature
 - **Status:** Under Peer Review
 - **Year:** 2026

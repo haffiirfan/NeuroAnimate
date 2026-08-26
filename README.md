@@ -69,7 +69,7 @@ Text Prompt
 
 | Metric | Without DMO | With DMO |
 |:--|:--:|:--:|
-| **Peak VRAM required** | 60.1 GB | **13.8 GB** |
+| **VRAM required** | 60.1 GB | **32 GB** |
 | **Hardware needed** | 4× A100  | **2× T4 (16 GB each)** |
 | **Quantisation** | Not needed | **Not needed** |
 | **Quality loss** | None | **None** |

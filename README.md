@@ -12,7 +12,7 @@
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 **NeuroAnimate** is a six-model generative AI pipeline that transforms a simple text prompt into a fully animated, hyper-realistic portrait video. The core contribution is **OrchestraGen** — a **Dynamic Memory Orchestration (DMO)** strategy that enables models totalling **~60.1 GB** in weights to run sequentially within **32 GB** of combined VRAM on consumer-grade hardware (2× NVIDIA Tesla T4), without quantisation or quality loss.
 
@@ -65,7 +65,7 @@ Text Prompt
 
 ---
 
-## 🔬 Key Contribution: Dynamic Memory Orchestration (DMO)
+##  Key Contribution: Dynamic Memory Orchestration (DMO)
 
 | Metric | Without DMO | With DMO |
 |:--|:--:|:--:|
@@ -78,7 +78,7 @@ DMO enforces a strict **load → infer → teardown → clear** lifecycle for ea
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 NeuroAnimate/
@@ -93,7 +93,7 @@ NeuroAnimate/
 │
 ├── src/
 │   ├── __init__.py                # Package exports
-│   ├── memory_orchestrator.py     # 🔑 DMO — the novel contribution
+│   ├── memory_orchestrator.py     #  DMO — the novel contribution
 │   ├── prompt_enhancer.py         # Stage 1: Mistral 7B prompt enhancement
 │   ├── image_generator.py         # Stage 2-3: SDXL Base + Refiner
 │   ├── liveportrait_runner.py     # Stage 4a: Face animation (GPU 0)
@@ -114,7 +114,7 @@ NeuroAnimate/
 
 ---
 
-## 🚀 Quick Start (Kaggle)
+##  Quick Start (Kaggle)
 
 This pipeline is designed for **Kaggle Notebooks** with **GPU T4 ×2** accelerator.
 
@@ -158,7 +158,7 @@ print(status)
 
 ---
 
-## 🛠️ Models Used
+##  Models Used
 
 | # | Model | Parameters | VRAM (FP16) | Purpose |
 |:--:|:--|:--:|:--:|:--|
@@ -172,7 +172,7 @@ print(status)
 
 ---
 
-## 📊 Performance (Kaggle T4 ×2)
+##  Performance (Kaggle T4 ×2)
 
 | Stage | Time | Hardware |
 |:--|:--:|:--|
@@ -187,7 +187,7 @@ print(status)
 
 ---
 
-## 📄 Paper
+##  Paper
 
 **OrchestraGen: Memory-Orchestrated Multimodal Synthesis for 3D-Styled Imagery and Hyper-Realistic Portrait Animation**
 
@@ -200,7 +200,7 @@ See [CITATION.md](CITATION.md) for the BibTeX entry.
 
 ---
 
-## 📜 License
+##  License
 
 This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
 

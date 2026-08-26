@@ -10,7 +10,7 @@ If you use this code or the OrchestraGen pipeline in your research, please cite:
   journal   = {Multimedia Systems},
   publisher = {Springer Nature},
   year      = {2026},
-  note      = {Under Peer Review}
+  note      = {Under Review}
 }
 ```
 

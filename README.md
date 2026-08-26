@@ -1,4 +1,4 @@
-#  NeuroAnimate | OrchestraGen Pipeline
+# 🧠 NeuroAnimate — OrchestraGen Pipeline
 
 ### Memory-Orchestrated Multimodal Synthesis for 3D-Styled Imagery & Hyper-Realistic Portrait Animation
 
@@ -12,9 +12,9 @@
 
 ---
 
-##  Overview
+## 🎯 Overview
 
-**NeuroAnimate** is a six-model generative AI pipeline that transforms a simple text prompt into a fully animated, hyper-realistic portrait video. The core contribution is **OrchestraGen**  a **Dynamic Memory Orchestration (DMO)** strategy that enables models totalling **~60.1 GB** in weights to run sequentially within **32 GB** of combined VRAM on consumer-grade hardware (2× NVIDIA Tesla T4), without quantisation or quality loss.
+**NeuroAnimate** is a six-model generative AI pipeline that transforms a simple text prompt into a fully animated, hyper-realistic portrait video. The core contribution is **OrchestraGen** — a **Dynamic Memory Orchestration (DMO)** strategy that enables models totalling **~60.1 GB** in weights to run sequentially within **32 GB** of combined VRAM on consumer-grade hardware (2× NVIDIA Tesla T4), without quantisation or quality loss.
 
 ### The Pipeline
 
@@ -24,38 +24,37 @@ Text Prompt
     ▼
 ┌──────────────────────┐
 │  1. Mistral 7B       │  GPU 1  │  Prompt Enhancement
-│     (13.8 GB FP16)   │         │  → SDXL-optimised description
+│     (14.5 GB FP16)   │         │  → SDXL-optimised description
 └──────────┬───────────┘
            │ ── VRAM CLEAR ──
            ▼
 ┌──────────────────────┐
 │  2. SDXL 1.0 Base    │  GPU 0  │  Text-to-Image (768×768)
-│     (10.1 GB FP16)   │         │
+│     (6.9 GB FP16)    │         │
 └──────────┬───────────┘
            │ ── VRAM CLEAR ──
            ▼
 ┌──────────────────────┐
 │  3. SDXL 1.0 Refiner │  GPU 1  │  Detail Enhancement
-│     (9.5 GB FP16)    │         │
+│     (6.2 GB FP16)    │         │
 └──────────┬───────────┘
            │ ── FULL VRAM CLEAR ──
            ▼
 ┌──────────────────────┬──────────────────────┐
 │  4a. LivePortrait    │  4b. 2D Body Anim.   │  PARALLEL
-│      (GPU 0, 2.1 GB)   │      (CPU only)    │
-│      Face animation  │      Breathing/sway  │
+│      (GPU 0, 3 GB)   │      (CPU only)       │
+│      Face animation  │      Breathing/sway   │
 └──────────┬───────────┴──────────┬───────────┘
            │ ── VRAM CLEAR ──     │
            ▼                      ▼
 ┌─────────────────────────────────────────────┐
-│  5. Shoulder-Split Compositor (CPU)         │
+│  5. Shoulder-Split Compositor (CPU)          │
 │     Feathered blend + colour correction     │
 └──────────────────┬──────────────────────────┘
                    │
                    ▼
 ┌──────────────────────────────────────────────┐
-│  6. Real-ESRGAN 1.5× Upscale (GPU 0 + GPU 1) |
-│                  12.3 x 2                    |
+│  6. Real-ESRGAN 1.5× Upscale (GPU 0 + GPU 1)│
 │     Dual-GPU parallel frame processing       │
 └──────────────────┬───────────────────────────┘
                    │
@@ -65,12 +64,12 @@ Text Prompt
 
 ---
 
-##  Key Contribution: Dynamic Memory Orchestration (DMO)
+## 🔬 Key Contribution: Dynamic Memory Orchestration (DMO)
 
 | Metric | Without DMO | With DMO |
 |:--|:--:|:--:|
-| **Peak VRAM required** | 60.1 GB | **13.8 GB** |
-| **Hardware needed** | 4× A100  | **2× T4 (16 GB each)** |
+| **Peak VRAM required** | 60.1 GB | **14.5 GB** |
+| **Hardware needed** | 4× A100 (80 GB each) | **2× T4 (16 GB each)** |
 | **Quantisation** | Not needed | **Not needed** |
 | **Quality loss** | None | **None** |
 
@@ -78,7 +77,7 @@ DMO enforces a strict **load → infer → teardown → clear** lifecycle for ea
 
 ---
 
-##  Project Structure
+## 📁 Project Structure
 
 ```
 NeuroAnimate/
@@ -93,7 +92,7 @@ NeuroAnimate/
 │
 ├── src/
 │   ├── __init__.py                # Package exports
-│   ├── memory_orchestrator.py     #  DMO — the novel contribution
+│   ├── memory_orchestrator.py     # 🔑 DMO — the novel contribution
 │   ├── prompt_enhancer.py         # Stage 1: Mistral 7B prompt enhancement
 │   ├── image_generator.py         # Stage 2-3: SDXL Base + Refiner
 │   ├── liveportrait_runner.py     # Stage 4a: Face animation (GPU 0)
@@ -114,7 +113,7 @@ NeuroAnimate/
 
 ---
 
-##  Quick Start (Kaggle)
+## 🚀 Quick Start (Kaggle)
 
 This pipeline is designed for **Kaggle Notebooks** with **GPU T4 ×2** accelerator.
 
@@ -158,7 +157,7 @@ print(status)
 
 ---
 
-##  Models Used
+## 🛠️ Models Used
 
 | # | Model | Parameters | VRAM (FP16) | Purpose |
 |:--:|:--|:--:|:--:|:--|
@@ -172,36 +171,41 @@ print(status)
 
 ---
 
-##  Performance (Kaggle T4 ×2)
+## 📊 Performance (Kaggle T4 ×2)
 
 | Stage | Time | Hardware |
 |:--|:--:|:--|
-| Prompt Enhancement (Mistral 7B) | ~69s | GPU 1 |
-| Image Generation (SDXL Base) | ~19s | GPU 0 |
-| Image Refinement (SDXL Refiner) | ~17s | GPU 1 |
-| Face Animation (LivePortrait) | ~156s | GPU 0 |
-| Body Animation (2D Procedural) | ~0s | CPU (parallel) |
+| Prompt Enhancement (Mistral 7B) | ~15s | GPU 1 |
+| Image Generation (SDXL Base) | ~25s | GPU 0 |
+| Image Refinement (SDXL Refiner) | ~30s | GPU 1 |
+| Face Animation (LivePortrait) | ~45s | GPU 0 |
+| Body Animation (2D Procedural) | ~30s | CPU (parallel) |
 | Compositing | ~10s | CPU |
-| Super-Resolution (ESRGAN) | ~140s | GPU 0 + GPU 1 |
-| **Total Pipeline** | **~6.7 min** | |
+| Super-Resolution (ESRGAN) | ~60s | GPU 0 + GPU 1 |
+| **Total Pipeline** | **~3.5 min** | |
 
 ---
 
-##  Paper
+## 📄 Paper
 
 **OrchestraGen: Memory-Orchestrated Multimodal Synthesis for 3D-Styled Imagery and Hyper-Realistic Portrait Animation**
 
-- **Author:** Haffi Irfan | Dr. Muhammad Saleem
+- **Author:** Haffi Irfan
 - **Journal:** Multimedia Systems (MMSJ), Springer Nature
 - **Status:** Under Peer Review
 - **Year:** 2026
 
 See [CITATION.md](CITATION.md) for the BibTeX entry.
 
+---
+
+## 📜 License
+
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-##  Acknowledgements
+## 🙏 Acknowledgements
 
 - [KwaiVGI/LivePortrait](https://github.com/KwaiVGI/LivePortrait) — Face animation
 - [Stability AI](https://stability.ai/) — Stable Diffusion XL

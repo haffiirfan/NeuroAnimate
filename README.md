@@ -24,26 +24,26 @@ Text Prompt
     ▼
 ┌──────────────────────┐
 │  1. Mistral 7B       │  GPU 1  │  Prompt Enhancement
-│     (14.5 GB FP16)   │         │  → SDXL-optimised description
+│     (13.8 GB FP16)   │         │  → SDXL-optimised description
 └──────────┬───────────┘
            │ ── VRAM CLEAR ──
            ▼
 ┌──────────────────────┐
 │  2. SDXL 1.0 Base    │  GPU 0  │  Text-to-Image (768×768)
-│     (6.9 GB FP16)    │         │
+│     (10.1 GB FP16)    │         │
 └──────────┬───────────┘
            │ ── VRAM CLEAR ──
            ▼
 ┌──────────────────────┐
 │  3. SDXL 1.0 Refiner │  GPU 1  │  Detail Enhancement
-│     (6.2 GB FP16)    │         │
+│     (9.5 GB FP16)    │         │
 └──────────┬───────────┘
            │ ── FULL VRAM CLEAR ──
            ▼
 ┌──────────────────────┬──────────────────────┐
 │  4a. LivePortrait    │  4b. 2D Body Anim.   │  PARALLEL
-│      (GPU 0, 3 GB)   │      (CPU only)       │
-│      Face animation  │      Breathing/sway   │
+│      (GPU 0, 2.1 GB)   │      (CPU only)    │
+│      Face animation  │      Breathing/sway  │
 └──────────┬───────────┴──────────┬───────────┘
            │ ── VRAM CLEAR ──     │
            ▼                      ▼
@@ -54,7 +54,8 @@ Text Prompt
                    │
                    ▼
 ┌──────────────────────────────────────────────┐
-│  6. Real-ESRGAN 1.5× Upscale (GPU 0 + GPU 1)│
+│  6. Real-ESRGAN 1.5× Upscale (GPU 0 + GPU 1) |
+│                  12.3 x 2                    |
 │     Dual-GPU parallel frame processing       │
 └──────────────────┬───────────────────────────┘
                    │

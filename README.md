@@ -16,7 +16,7 @@
 
 **NeuroAnimate** is a six-model generative AI pipeline that transforms a simple text prompt into a fully animated, hyper-realistic portrait video. The core contribution is **OrchestraGen**  a **Dynamic Memory Orchestration (DMO)** strategy that enables models totalling **~60.1 GB** in weights to run sequentially within **32 GB** of combined VRAM on consumer-grade hardware (2× NVIDIA Tesla T4), without quantisation or quality loss.
 
-### The Pipeline
+### Pipeline Architecture
 
 ```
 Text Prompt

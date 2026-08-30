@@ -8,7 +8,7 @@
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Kaggle%20T4×2-orange)](https://kaggle.com)
 
-> **📄 Paper Status:** Under peer review at *Multimedia Systems* (MMSJ), Springer Nature.
+> ** Paper Status:** Under peer review at *Multimedia Systems* (MMSJ), Springer Nature.
 
 ---
 

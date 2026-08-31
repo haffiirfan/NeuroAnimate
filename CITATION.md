@@ -16,15 +16,22 @@ If you use this code or the OrchestraGen pipeline in your research, please cite:
 
 ## Paper Abstract
 
-We present **OrchestraGen**, a six-model generative AI pipeline that synthesises
-3D-styled portrait imagery from text prompts and animates the result into
-hyper-realistic video — all within 32 GB of combined GPU VRAM on consumer-grade
-hardware (2× NVIDIA Tesla T4). The key contribution is **Dynamic Memory
-Orchestration (DMO)**, a sequential load–infer–unload strategy that enables
-models totalling ~60.1 GB in weights to share limited GPU memory without
-quantisation or quality loss. The pipeline chains Mistral-7B for prompt
-enhancement, Stable Diffusion XL (Base + Refiner) for image generation,
-LivePortrait for facial motion transfer, a procedural 2D body animator, and
-Real-ESRGAN for super-resolution upscaling. Experiments on Kaggle T4×2 hardware
-demonstrate that DMO reduces peak VRAM from 60.1 GB (simultaneous) to 14.5 GB
-(sequential peak) while maintaining generation quality.
+Recent advances in multimedia generative artificial intelligence have
+been driven by large-scale vision–language diffusion models and increasing
+specialization in computer vision. Although the performance of individual
+models continues to improve, deploying complex multi-model AI pipelines in
+real-world applications remains challenging due to resource conflicts, memory
+constraints, version incompatibilities, and limited robustness. Moreover, existing
+text-to-avatar generation systems typically rely on high-end GPUs, which limits
+their scalability on consumer-grade hardware. We propose OrchestraGen, a
+multi-model generative pipeline that transforms textual prompts into fully
+animated portrait videos. OrchestraGen uses LLM-based prompt enhancement,
+dual-stage diffusion synthesis, 3D-aware portrait animation through custom
+body motion via facial retargeting, and super-resolution enhancement on
+constrained dual-GPU hardware. Dynamic Memory Orchestration enables
+reliable execution of 60.1 GB of heterogeneous model weights on a 32 GB
+dual-T4 configuration, achieving a 1.88× system memory scaling factor while
+maintaining peak single-GPU occupancy at 13.8 GB. Heterogeneous GPU
+CPU parallelism and dual-GPU parallel frame enhancement collectively reduce
+animation latency by 33.1%, while three-mode LLM prompt enhancement
+achieves a CLIP alignment score of 0.35

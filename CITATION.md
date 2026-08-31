@@ -6,7 +6,7 @@ If you use this code or the OrchestraGen pipeline in your research, please cite:
 @article{irfan2026orchestragen,
   title     = {OrchestraGen: Memory-Orchestrated Multimodal Synthesis for
                3D-Styled Imagery and Hyper-Realistic Portrait Animation},
-  author    = {Irfan, Haffi},
+  author    = {Haffi Irfan, Dr. Muhammad Saleem},
   journal   = {Multimedia Systems},
   publisher = {Springer Nature},
   year      = {2026},

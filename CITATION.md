@@ -34,4 +34,4 @@ dual-T4 configuration, achieving a 1.88× system memory scaling factor while
 maintaining peak single-GPU occupancy at 13.8 GB. Heterogeneous GPU
 CPU parallelism and dual-GPU parallel frame enhancement collectively reduce
 animation latency by 33.1%, while three-mode LLM prompt enhancement
-achieves a CLIP alignment score of 0.35
+achieves a CLIP alignment score of 0.35.

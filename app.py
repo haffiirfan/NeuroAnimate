@@ -26,11 +26,11 @@ from src.pipeline import NeuroAnimatePipeline
 from src.memory_orchestrator import clear_gpu
 
 
-# ── Initialise Pipeline ─────────────────────────────────────────────────────
+# ── Initialise Pipeline ───
 pipeline = NeuroAnimatePipeline()
 
 
-# ── Callback Functions ───────────────────────────────────────────────────────
+# ── Callback Functions ────
 
 def enhance_click(user_prompt, mode_choice, enhance_choice):
     """Enhances the user prompt or passes it through."""
@@ -101,7 +101,7 @@ def reset_click():
     )
 
 
-# ── Gradio UI Layout ────────────────────────────────────────────────────────
+# ── Gradio UI Layout ───
 
 with gr.Blocks(theme=gr.themes.Soft(), title="NeuroAnimate FYP Pipeline") as demo:
 
@@ -114,7 +114,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="NeuroAnimate FYP Pipeline") as dem
 
     with gr.Row():
 
-        # ── Left sidebar ────────────────────────────────────────────────
+        # ── Left sidebar ──
         with gr.Column(scale=1):
             gr.Markdown("### ⚙️ Settings")
             mode_choice = gr.Radio(
@@ -152,7 +152,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="NeuroAnimate FYP Pipeline") as dem
                 "🎭 Animate Portrait", variant="primary", visible=False
             )
 
-        # ── Main panel ──────────────────────────────────────────────────
+        # ── Main panel ──
         with gr.Column(scale=2):
             user_prompt = gr.Textbox(
                 lines=3,
@@ -173,7 +173,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="NeuroAnimate FYP Pipeline") as dem
         interactive=False,
     )
 
-    # ── Event Wiring ────────────────────────────────────────────────────
+    # ── Event Wiring ──
     enhance_btn.click(
         enhance_click,
         inputs=[user_prompt, mode_choice, enhance_choice],
@@ -200,7 +200,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="NeuroAnimate FYP Pipeline") as dem
     )
 
 
-# ── Launch ──────────────────────────────────────────────────────────────────
+# ── Launch ────
 if __name__ == "__main__":
     print("🚀 Launching NeuroAnimate Gradio UI ...")
     demo.launch(share=True, debug=True)

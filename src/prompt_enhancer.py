@@ -1,6 +1,5 @@
 """
 Prompt Enhancement Module — Mistral 7B (GPU 1)
-===============================================
 
 Enhances raw user prompts into SDXL-optimised descriptions using the
 Nous-Hermes-2-Mistral-7B-DPO language model. Supports three creative
@@ -21,7 +20,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from .memory_orchestrator import clear_gpu
 
 
-# ── System Prompts for Each Creative Mode ────────────────────────────────────
+# ── System Prompts for Each Creative Mode ───
 
 SYSTEM_PROMPT_PHOTOREALISM = (
     "You are an SDXL 1.0 prompt engineer for photorealistic DSLR/Canon images. "

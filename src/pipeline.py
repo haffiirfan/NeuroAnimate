@@ -1,6 +1,5 @@
 """
 NeuroAnimate Pipeline — Master Orchestrator
-=============================================
 
 Coordinates the full six-model pipeline using Dynamic Memory Orchestration (DMO):
 
@@ -127,7 +126,7 @@ class NeuroAnimatePipeline:
                 return None, "❌ No generated images found. Generate images first."
             source_image = max(portrait_files, key=os.path.getmtime)
 
-            # ── Resolve driving video ────────────────────────────────────
+            # ── Resolve driving video ──
             if driving_video_path and os.path.exists(driving_video_path):
                 driving_video = driving_video_path
             else:
@@ -137,14 +136,14 @@ class NeuroAnimatePipeline:
 
             clear_gpu()
 
-            # ── Stage 3: Normalise inputs ────────────────────────────────
+            # ── Stage 3: Normalise inputs ──
             log("━" * 52)
             log("🚀 NeuroAnimate Pipeline Starting  [2D Body Mode]")
             log("━" * 52)
 
             source, trimmed = normalize_video(source_image, driving_video, log=log)
 
-            # ── Stage 4: Parallel face + body animation ──────────────────
+            # ── Stage 4: Parallel face + body animation ──
             log("⚡ Stage 4: LivePortrait (GPU 0) ∥ Body Animation (CPU) — parallel ...")
             lp_result = [None]
             body_result = [None]
@@ -180,22 +179,22 @@ class NeuroAnimatePipeline:
                 raise RuntimeError("\n".join(errors))
             log("✅ Stage 4 complete")
 
-            # ── DMO: Clear VRAM before compositing ───────────────────────
+            # ── DMO: Clear VRAM before compositing ───
             clear_gpu_memory(log)
 
-            # ── Stage 5: Composite face + body ───────────────────────────
+            # ── Stage 5: Composite face + body ───
             final = composite_videos(
                 lp_result[0], body_result[0], source, trimmed, log=log
             )
 
-            # ── Stage 6: Super-resolution ────────────────────────────────
+            # ── Stage 6: Super-resolution ───
             if enable_upscale:
                 final, esrgan_time = run_esrgan(
                     final, use_dual_gpu=use_dual_gpu, log=log
                 )
                 self.timings["esrgan"] = esrgan_time
 
-            # ── Timing report ────────────────────────────────────────────
+            # ── Timing report ───
             log("━" * 52)
             log("📊 TIMING REPORT")
             log("━" * 52)

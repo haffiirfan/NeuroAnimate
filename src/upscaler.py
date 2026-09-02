@@ -1,6 +1,5 @@
 """
 Real-ESRGAN Super-Resolution Module — Dual-GPU Upscaling
-=========================================================
 
 Upscales the composited video by 1.5× using a custom implementation of
 the RRDBNet (Residual-in-Residual Dense Block Network) architecture,
@@ -30,7 +29,7 @@ import torch
 from .compositor import ffprobe_info
 
 
-# ── ESRGAN Worker Script ────────────────────────────────────────────────────
+# ── ESRGAN Worker Script ──
 # This script is written to a temporary file and executed as a subprocess
 # on each GPU. It contains the full RRDBNet model definition to avoid
 # importing heavy dependencies in the main process.
@@ -96,7 +95,7 @@ class RRDBNet(nn.Module):
         return self.conv_last(self.lrelu(self.conv_hr(f)))
 
 
-# ── Worker Entry Point ───────────────────────────────────────────────────────
+# ── Worker Entry Point ──
 gpu_id = int(sys.argv[1])
 fps = json.loads(sys.argv[2])
 fo = sys.argv[3]
@@ -213,7 +212,7 @@ def run_esrgan(final_video, esrgan_weights="/kaggle/working/RealESRGAN_x2plus.pt
             shutil.rmtree(d)
         os.makedirs(d)
 
-    # ── Extract frames at reduced resolution ─────────────────────────────
+    # ── Extract frames at reduced resolution ───
     subprocess.run(
         [
             "ffmpeg", "-y", "-i", final_video,
@@ -231,12 +230,12 @@ def run_esrgan(final_video, esrgan_weights="/kaggle/working/RealESRGAN_x2plus.pt
     n_gpus = min(torch.cuda.device_count(), 2) if use_dual_gpu else 1
     log(f"   {total} frames | {n_gpus} GPU(s) | batch={batch_size} | scale=1.5×")
 
-    # ── Write worker script to temp file ─────────────────────────────────
+    # ── Write worker script to temp file ──
     worker_path = "/tmp/esrgan_worker.py"
     with open(worker_path, "w") as f:
         f.write(ESRGAN_WORKER_CODE)
 
-    # ── Split frames across GPUs ─────────────────────────────────────────
+    # ── Split frames across GPUs ──
     mid = total // 2
     splits = [all_frames[:mid], all_frames[mid:]] if n_gpus == 2 else [all_frames]
     errors = []
@@ -259,7 +258,7 @@ def run_esrgan(final_video, esrgan_weights="/kaggle/working/RealESRGAN_x2plus.pt
         if result.returncode != 0:
             errors.append(result.stderr[-600:])
 
-    # ── Launch parallel workers ──────────────────────────────────────────
+    # ── Launch parallel workers ───
     threads = [
         threading.Thread(target=worker, args=(i, splits[i]))
         for i in range(n_gpus)
@@ -276,7 +275,7 @@ def run_esrgan(final_video, esrgan_weights="/kaggle/working/RealESRGAN_x2plus.pt
     elapsed = time.time() - t0
     log(f"✅ Upscaling done in {elapsed:.1f}s")
 
-    # ── Reassemble into video ────────────────────────────────────────────
+    # ── Reassemble into video ───
     all_out = sorted(glob.glob(os.path.join(FO, "frame_*.png")))
     for i, fp in enumerate(all_out):
         os.rename(fp, os.path.join(FO, f"seq_{i:05d}.png"))

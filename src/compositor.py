@@ -1,6 +1,5 @@
 """
 Face + Body Compositor — Shoulder-Split Blending
-=================================================
 
 Merges the LivePortrait face animation (upper region) with the 2D body
 animation (lower region) using a feathered shoulder-split mask with
@@ -53,14 +52,14 @@ def composite_videos(lp_video, body_video, source_image, trimmed_video,
 
     FINAL = os.path.join(work_dir, "final_output.mp4")
 
-    # ── Determine output dimensions from body video ──────────────────────
+    # ── Determine output dimensions from body video ───
     bi = ffprobe_info(body_video)
     BW = int(bi["width"])
     BH = int(bi["height"])
     num, den = bi.get("r_frame_rate", "25/1").split("/")
     FPS_C = float(num) / float(den)
 
-    # ── Detect face in source for split-point estimation ─────────────────
+    # ── Detect face in source for split-point estimation ───
     src_r = cv2.resize(cv2.imread(source_image), (BW, BH))
     gray_s = cv2.cvtColor(src_r, cv2.COLOR_BGR2GRAY)
     face_cascade = cv2.CascadeClassifier(
@@ -84,7 +83,7 @@ def composite_videos(lp_video, body_video, source_image, trimmed_video,
         SPLIT_Y = int(BH * 0.62)
         log(f"   ⚠️ No face — fallback split y={SPLIT_Y}")
 
-    # ── Build feathered blend masks ──────────────────────────────────────
+    # ── Build feathered blend masks ──
     FADE = 80
     lp_mask = np.zeros((BH, BW), dtype=np.float32)
     for y in range(BH):
@@ -96,7 +95,7 @@ def composite_videos(lp_video, body_video, source_image, trimmed_video,
     lp_m3 = np.stack([lp_mask] * 3, axis=-1)
     body_m3 = 1.0 - lp_m3
 
-    # ── Per-channel colour correction at the seam ────────────────────────
+    # ── Per-channel colour correction at the seam ──
     def peek_frame(path):
         """Extracts the first frame from a video for colour analysis."""
         proc = subprocess.Popen(
@@ -126,7 +125,7 @@ def composite_videos(lp_video, body_video, source_image, trimmed_video,
         cc_gain = np.clip(cc_gain, 0.80, 1.25)
         log(f"   Colour-correction gain (BGR): {cc_gain.round(3).tolist()}")
 
-    # ── Frame-by-frame compositing via ffmpeg pipes ──────────────────────
+    # ── Frame-by-frame compositing via ffmpeg pipes ───
     def open_pipe(path):
         return subprocess.Popen(
             [

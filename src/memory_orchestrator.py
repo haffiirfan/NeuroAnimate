@@ -1,6 +1,5 @@
 """
 Dynamic Memory Orchestration (DMO) — The Novel Contribution of OrchestraGen
-=============================================================================
 
 This module implements the core innovation described in the OrchestraGen paper:
 a sequential memory orchestration strategy that enables six heterogeneous deep

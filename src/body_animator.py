@@ -1,6 +1,5 @@
 """
 2D Body Animation Module — CPU-Based Procedural Motion
-=======================================================
 
 Generates realistic upper-body motion (breathing, lateral sway, shoulder
 lift) by applying sinusoidal displacement fields to the source portrait.
@@ -30,7 +29,7 @@ import cv2
 import numpy as np
 
 
-# ── Pixel Buffer Utilities ───────────────────────────────────────────────────
+# ── Pixel Buffer Utilities ───
 
 _DTYPE_MAP = {1: "uint8", 2: "uint16", 4: "float32", 8: "float64"}
 
@@ -68,7 +67,7 @@ def run_body_animation(source_image, trimmed_video, work_dir="/kaggle/working",
     BODY_VIDEO = os.path.join(work_dir, "body_animation.mp4")
     RAW_FRAMES = os.path.join(work_dir, "body_frames.raw")
 
-    # ── Load and normalise source image ──────────────────────────────────
+    # ── Load and normalise source image ──
     src = cv2.imread(source_image)
     H, W = src.shape[:2]
     H = H if H % 2 == 0 else H - 1
@@ -76,13 +75,13 @@ def run_body_animation(source_image, trimmed_video, work_dir="/kaggle/working",
     src = src[:H, :W]
     src_f32 = cv2np(src, "float32")
 
-    # ── Extract driving video metadata ───────────────────────────────────
+    # ── Extract driving video metadata ──
     cap = cv2.VideoCapture(trimmed_video)
     FPS = float(cap.get(cv2.CAP_PROP_FPS) or 25.0)
     N = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     cap.release()
 
-    # ── Landmark estimation via Haar cascade ─────────────────────────────
+    # ── Landmark estimation via Haar cascade ──
     gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
     face_cascade = cv2.CascadeClassifier(
         cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
@@ -121,7 +120,7 @@ def run_body_animation(source_image, trimmed_video, work_dir="/kaggle/working",
     half_sw = max(shoulder_width / 2, 1.0)
     chest_y = int((shoulder_y + hip_y) / 2)
 
-    # ── Weight maps ──────────────────────────────────────────────────────
+    # ── Weight maps ───
     ys, xs = np.mgrid[0:H, 0:W].astype("float32")
     rel_x = (xs - spine_x) / half_sw
 
@@ -181,7 +180,7 @@ def run_body_animation(source_image, trimmed_video, work_dir="/kaggle/working",
     ).astype("float32")
     edge_guard = ev[:, np.newaxis] * eh[np.newaxis, :]
 
-    # ── Animation parameters ─────────────────────────────────────────────
+    # ── Animation parameters ───
     BREATH_HZ = 0.38;   BREATH_RADIAL = 3.5;  BREATH_LIFT = 2.2
     SWAY_HZ = 0.15;     SWAY_AMP = 5.0
     SHOULDER_HZ = 0.38;  SHOULDER_AMP = 2.4
@@ -191,7 +190,7 @@ def run_body_animation(source_image, trimmed_video, work_dir="/kaggle/working",
     log(f"   [2D] breath={BREATH_RADIAL}px  sway={SWAY_AMP}px  "
         f"shoulder={SHOULDER_AMP}px  N={N}")
 
-    # ── Frame-by-frame generation ────────────────────────────────────────
+    # ── Frame-by-frame generation ──
     with open(RAW_FRAMES, "wb") as raw_f:
         for i in range(N):
             ramp = min(1.0, i / max(RAMP_FRAMES, 1))
@@ -232,7 +231,7 @@ def run_body_animation(source_image, trimmed_video, work_dir="/kaggle/working",
                 log(f"   Body frame {i}/{N}  sway={sway_sig * SWAY_AMP * ramp:+.1f}px  "
                     f"breath={breath:+.2f}")
 
-    # ── Encode raw frames to H.264 ──────────────────────────────────────
+    # ── Encode raw frames to H.264 ──
     subprocess.run(
         [
             "ffmpeg", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24",

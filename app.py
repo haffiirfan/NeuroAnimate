@@ -1,5 +1,5 @@
 """
-NeuroAnimate — Gradio Web Interface
+NeuroAnimate — Gradio Web UI
 =====================================
 
 Provides an interactive web UI for the full OrchestraGen pipeline:

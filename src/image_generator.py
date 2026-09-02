@@ -1,6 +1,5 @@
 """
 Image Generation Module — SDXL 1.0 Base (GPU 0) + Refiner (GPU 1)
-==================================================================
 
 Generates high-fidelity portrait images using the two-stage Stable Diffusion
 XL pipeline: Base model produces the initial 768×768 image, then the Refiner
@@ -91,11 +90,11 @@ class ImageGenerator:
 
             timings["sdxl_base"] = time.time() - t0
 
-            # ── DMO: Teardown Base, clear GPU 0 ─────────────────────────
+            # ── DMO: Teardown Base, clear GPU 0 ──
             del pipe_base
             clear_gpu()
 
-            # ── Stage 2: SDXL Refiner on GPU 1 ──────────────────────────
+            # ── Stage 2: SDXL Refiner on GPU 1 ──
             torch.cuda.set_device(self.refiner_device)
             refiner = StableDiffusionXLImg2ImgPipeline.from_pretrained(
                 self.refiner_model,
@@ -126,7 +125,7 @@ class ImageGenerator:
 
             timings["sdxl_refiner"] = time.time() - t0
 
-            # ── DMO: Full teardown — both GPUs cleared before video ──────
+            # ── DMO: Full teardown — both GPUs cleared before video ──
             del refiner
             clear_gpu()
 

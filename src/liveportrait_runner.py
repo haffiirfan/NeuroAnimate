@@ -1,6 +1,5 @@
 """
 LivePortrait Runner — Face Animation (GPU 0)
-=============================================
 
 Handles video preprocessing (normalisation to 512×768 @ 25fps) and
 face-driven animation using the KwaiVGI LivePortrait model.
@@ -21,7 +20,7 @@ import subprocess
 from huggingface_hub import snapshot_download
 
 
-# ── Default Paths (Kaggle Environment) ───────────────────────────────────────
+# ── Default Paths (Kaggle Environment) ──
 WORK = "/kaggle/working"
 LP_DIR = "/kaggle/working/LivePortrait"
 
@@ -132,7 +131,7 @@ def run_liveportrait(source_image, trimmed_video, motion_multiplier=0.65,
     env = os.environ.copy()
     env["CUDA_VISIBLE_DEVICES"] = "0"
 
-    # ── Patch lip_zero flag (one-time) ───────────────────────────────────
+    # ── Patch lip_zero flag (one-time) ─
     patch_marker = os.path.join(lp_dir, ".lip_zero_patched")
     if not os.path.exists(patch_marker):
         for cfg in [
@@ -151,7 +150,7 @@ def run_liveportrait(source_image, trimmed_video, motion_multiplier=0.65,
                     log(f"   ✅ Patched flag_lip_zero→False in {os.path.basename(cfg)}")
         open(patch_marker, "w").close()
 
-    # ── Run inference ────────────────────────────────────────────────────
+    # ── Run inference ──
     os.chdir(lp_dir)
     subprocess.run(
         [
@@ -168,7 +167,7 @@ def run_liveportrait(source_image, trimmed_video, motion_multiplier=0.65,
     )
     os.chdir(work_dir)
 
-    # ── Locate output video ──────────────────────────────────────────────
+    # ── Locate output video ──
     candidates = [
         v
         for v in glob.glob(os.path.join(lp_dir, "animations", "**", "*.mp4"), recursive=True)

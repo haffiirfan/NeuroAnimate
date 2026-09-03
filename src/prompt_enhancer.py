@@ -30,15 +30,18 @@ system_prompt_graphic = (
             )
 
 
-SYSTEM_PROMPT_GAMING = (
-    "You are an SDXL prompt engineer and AAA game character designer. "
-    "Rewrite the user's idea into ~50–60 tokens while keeping the same subject. "
-    "Always include: 8k ultra-sharp details, half upper body, Unreal Engine 5 render, "
-    "RTX lighting, PBR materials, polygonal hard edges, dark 3D colors, and next-gen shaders, "
-    "with tactical armor, sharp metallic textures, detailed weapon. "
-    "Focus on sharp edges, high-resolution textures, and the gritty realism of games. "
-    "Write in 2–3 fluent sentences emphasising AAA in-game cutscene style, not movie realism."
-)
+system_prompt_gaming = (
+                "You are an SDXL prompt engineer and AAA game character designer. "
+                "Rewrite the user's idea into ~50–60 tokens while keeping the same subject. "
+                "Always include: 8k ultra-sharp details,half upper body, Unreal Engine 5 render, RTX lighting, "
+                "PBR materials, polygonal hard edges, dark 3D colors, and next-gen shaders. "
+                "with tactical armor, sharp metallic textures, detailed weapon. "
+                "Focus on sharp edges, high-resolution textures, and the gritty realism of games. "
+                "Write in 2–3 fluent sentences emphasizing AAA in-game cutscene style, not movie realism. \n\n"
+                f"User Prompt: {user_prompt}\n"
+                "Enhanced Prompt:"
+            )
+
 
 
 class PromptEnhancer:

@@ -1,19 +1,3 @@
-"""
-Prompt Enhancement Module — Mistral 7B (GPU 1)
-
-Enhances raw user prompts into SDXL-optimised descriptions using the
-Nous-Hermes-2-Mistral-7B-DPO language model. Supports three creative
-modes: Photorealism, Graphic Design, and Gaming.
-
-The enhanced prompt is capped at 77 tokens to respect the CLIP text
-encoder limit in Stable Diffusion XL.
-
-OrchestraGen Note:
-    Mistral 7B is loaded on GPU 1 in FP16 (~14.5 GB VRAM). After prompt
-    generation, the model is explicitly deleted and VRAM is cleared before
-    the next stage (SDXL Base on GPU 0).
-"""
-
 import time
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM

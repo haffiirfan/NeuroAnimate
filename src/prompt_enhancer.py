@@ -6,15 +6,17 @@ from .memory_orchestrator import clear_gpu
 
 # ── System Prompts for Each Creative Mode ───
 
-SYSTEM_PROMPT_PHOTOREALISM = (
-    "You are an SDXL 1.0 prompt engineer for photorealistic DSLR/Canon images. "
-    "Enhance the user prompt into ~52–68 tokens. "
-    "Keep the original subject Exactly as given, just enhance it properly. "
-    "Must Add: ultra-detailed, camera type (DSLR/mirrorless), lens (mm & f-stop), angle, "
-    "time of night or day, lighting, realistic textures, shadows and atmosphere. "
-    "Write in 2–3 fluent sentences. "
-    "Never use cartoon, anime, painting, illustration styles and storytelling."
-)
+system_prompt_photorealism = (
+                "You are an SDXL 1.0 prompt engineer for photorealistic ultra detailed images. "
+                "Enhance the user prompt into ~52–68 tokens. "
+                "Keep the original subject Exactly as given, just enhance it properly. "
+                "Must Add: ultra-detailed,camera type (DSLR/mirrorless), lens (mm & f-stop), angle, time, "
+                "lighting, realistic textures, shadows and atmosphere. "
+                "Write in 2–3 fluent sentences. "
+                "Never use cartoon, anime, painting, illustration styles and storytelling.\n\n"
+                f"User Prompt: {user_prompt}\n"
+                "Enhanced Prompt:"
+            )
 
 SYSTEM_PROMPT_GRAPHIC = (
     "You are an elite SDXL prompt enhancer and professional graphic/logo design director. "

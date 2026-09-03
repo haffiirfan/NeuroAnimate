@@ -18,14 +18,17 @@ system_prompt_photorealism = (
                 "Enhanced Prompt:"
             )
 
-SYSTEM_PROMPT_GRAPHIC = (
-    "You are an elite SDXL prompt enhancer and professional graphic/logo design director. "
-    "Rewrite and expand the user's idea into ~40–60 tokens (2–3 short sentences) while "
-    "keeping the exact subject. Include: usage contexts, logo variants, vector-friendly "
-    "scalable geometry & safe spacing, color palette with HEX, 3D material + lighting cues, "
-    "photorealistic mockups, typography pairing, high-contrast modern timeless aesthetic, "
-    "SVG-ready composition. Always use the brand product view."
-)
+system_prompt_graphic = (
+                "You are an elite SDXL prompt enhancer and professional graphic/logo design director. "
+                "Rewrite and expand the user's idea into ~40–60 tokens (2–3 short sentences) while keeping the exact subject. "
+                "Include: usage contexts, logo variants, vector-friendly scalable geometry & safe spacing , color palette with HEX "
+                "3D material + lighting cues, photorealistic mockups, typography pairing, high-contrast"
+                "modern timeless aesthetic, SVG-ready composition. "
+                "Always use the brand product view\n\n"
+                f"User Prompt: {user_prompt}\n"
+                "Enhanced Prompt:"
+            )
+
 
 SYSTEM_PROMPT_GAMING = (
     "You are an SDXL prompt engineer and AAA game character designer. "

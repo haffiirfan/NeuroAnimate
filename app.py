@@ -1,21 +1,3 @@
-"""
-NeuroAnimate — Gradio Web UI
-=====================================
-
-Provides an interactive web UI for the full OrchestraGen pipeline:
-  - Enter a text prompt and select a creative mode
-  - Enhance the prompt using Mistral 7B
-  - Generate portrait images using SDXL 1.0
-  - Upload a driving video and animate the portrait
-  - View the final upscaled video output
-
-Launch:
-    Run this file in a Kaggle notebook cell or locally:
-        $ python app.py
-
-The Gradio interface launches with a shareable public link.
-"""
-
 import random
 import threading
 import time

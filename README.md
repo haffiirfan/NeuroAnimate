@@ -23,7 +23,7 @@ Text Prompt
     │
     ▼
 ┌──────────────────────┐
-│  1. Mistral 7B       │  GPU 1  │  Prompt Enhancement (3-Mode)
+│  1. Mistral 7B       │  GPU 1  │  Prompt Enhancement (3-Modes)
 │     (13.8 GB FP16)   │         │  → SDXL-optimised description
 └──────────┬───────────┘
            │ ── VRAM CLEAR ──
